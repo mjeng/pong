@@ -18,82 +18,56 @@ struct PhysicsCategory {
     static let sun = 0b1 << 3
 }
 
+struct ExampleCategory {
+    
+}
+
 class GameScene: SKScene {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     
     override func didMove(to view: SKView) {
-        physicsWorld.gravity = CGVector(dx: 0.1, dy: -1)
+        self.backgroundColor = .lightGray
+//        physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8)
         physicsWorld.contactDelegate = self
         
-        print(self.frame.height)
-        print(self.frame.width)
-        
-        let sun = SKLightNode()
-        sun.physicsBody = SKPhysicsBody()
-        sun.physicsBody?.
-        sun.position = CGPoint(x: 60, y: 60)
-        sun.isEnabled = true
-        
-        
-        
-        let wallRect = CGSize(width: 200, height: 5)
-        let wallPosition = CGPoint(x: 0, y: -30)
-        let wall = SKShapeNode(rectOf: wallRect)
-        wall.position = wallPosition
-        wall.fillColor = UIColor.green
-        wall.strokeColor = UIColor.green
-        wall.physicsBody = SKPhysicsBody(rectangleOf: wallRect, center: CGPoint(x: 0, y: 0))
-        wall.physicsBody?.affectedByGravity = false
-        wall.physicsBody?.isDynamic = false
-        self.addChild(wall)
-        
-        
-        
-        let pongBallRadius = CGFloat(5)
-        let pongBall = SKShapeNode(circleOfRadius: pongBallRadius)
-        pongBall.physicsBody = SKPhysicsBody(circleOfRadius: pongBallRadius)
-        
-        let ballColor = UIColor.red
-        pongBall.fillColor = ballColor
-        pongBall.strokeColor = ballColor
-        self.addChild(pongBall)
-        let copy1: SKShapeNode = pongBall.copy() as! SKShapeNode
-        let copy2: SKShapeNode = pongBall.copy() as! SKShapeNode
-        copy1.position = CGPoint(x: 20, y: 20)
-        copy2.position = CGPoint(x: 10, y: 10)
-        self.addChild(copy1)
-        self.addChild(copy2)
-        
-        let moveBall = SKAction.move(by: CGVector(dx: 30, dy: 30), duration: 0.5)
-        let moveBall2 = SKAction.move(by: CGVector(dx: -30, dy: 30), duration: 0.5)
-        let repeatedAction = SKAction.repeatForever(SKAction.sequence([moveBall, moveBall2]))
-        
-        let scale = SKAction.scaleX(by: 30, y: 4, duration: 2)
-        let reversedScale = scale.reversed()
-        
-        
-//        pongBall.run(repeatedAction)
-        
-        
-        
-        
-//        pongBall.run(SKAction.repeatForever(SKAction.sequence([scale, reversedScale])))
-//        pongBall.run(SKAction.repeatForever(repeatedAction))
-        
-        // Create shape node to use during mouse interaction
-//        let w = (self.size.width + self.size.height) * 0.05
-//        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
+//        let ballRadius: CGFloat = 20
+//        let redBall = SKShapeNode(circleOfRadius: ballRadius)
+//        redBall.fillColor = .red
+//        redBall.position = CGPoint(x: 100, y: 200)
+//        redBall.physicsBody = SKPhysicsBody(circleOfRadius: ballRadius)
 //
-//        if let spinnyNode = self.spinnyNode {
-//            spinnyNode.lineWidth = 2.5
+//        self.addChild(redBall)
 //
-//            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-//            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-//                                              SKAction.fadeOut(withDuration: 0.5),
-//                                              SKAction.removeFromParent()]))
-//        }
+//        let blueBall = SKShapeNode(circleOfRadius: ballRadius)
+//        blueBall.fillColor = .blue
+//        blueBall.position = CGPoint(x: -100, y: 200)
+//        blueBall.physicsBody = SKPhysicsBody(circleOfRadius: ballRadius)
+//        blueBall.physicsBody?.restitution = 0.9
+//        blueBall.physicsBody?.linearDamping = 0.1
+//
+//
+//        self.addChild(blueBall)
+//
+//        var points = [CGPoint(x: -200, y: -100),
+//                      CGPoint(x: 200, y: -100)]
+//        let newGround = SKShapeNode(points: &points, count: points.count)
+//        newGround.physicsBody = SKPhysicsBody(edgeChainFrom: newGround.path!)
+//        newGround.physicsBody?.restitution = 1.0
+//
+//        self.addChild(newGround)
+//
+//        let greenBall = SKShapeNode(circleOfRadius: ballRadius)
+//        greenBall.fillColor = .green
+//        greenBall.position = CGPoint(x: 200, y: 150)
+//        greenBall.physicsBody = SKPhysicsBody(circleOfRadius: 1)
+//        greenBall.physicsBody?.affectedByGravity = false
+//
+//        self.addChild(greenBall)
+
+        self.addChild(PongBall(position: CGPoint(x: -80, y: 50), initialVelocity: CGVector(dx: 1, dy: -3.0)))
+        self.addChild(Wall(rect: <#T##CGRect#>))
     }
     
     

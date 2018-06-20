@@ -8,14 +8,32 @@
 
 import SpriteKit
 
-class PongBall {
-    let radius = 5
-    var position: Point
-    var velocity: Vector
+class PongBall: SKShapeNode {
     
-    init(position: Point, velocity: Vector) {
-        self.position = position
-        self.velocity = velocity
-//        SKNode
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    let radius: CGFloat = 5
+//    var velocity: CGVector
+//
+//    override init() {
+//        super.init()
+//    }
+
+    init(position: CGPoint, initialVelocity: CGVector) {
+        super.init()
+        
+        let diameter = radius * 2
+        let rect = CGRect(origin: position, size: CGSize(width: diameter, height: diameter))
+        self.path = CGPath(ellipseIn: rect, transform: nil)
+        
+        self.fillColor = .black
+        self.physicsBody = SKPhysicsBody(circleOfRadius: radius)
+        self.physicsBody?.affectedByGravity = false
+        self.physicsBody?.linearDamping = 0.0
+        self.physicsBody?.velocity = initialVelocity
+    }
+    
 }

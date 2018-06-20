@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C93DC9B620BE1A8E004CA1D6 /* Paddle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DC9B520BE1A8E004CA1D6 /* Paddle.swift */; };
-		C93DC9B820BE1F31004CA1D6 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DC9B720BE1F31004CA1D6 /* Point.swift */; };
 		C93DC9BA20BE2081004CA1D6 /* PongBall.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DC9B920BE2081004CA1D6 /* PongBall.swift */; };
 		C976F45120BC631B002FF299 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976F45020BC631B002FF299 /* AppDelegate.swift */; };
 		C976F45320BC631B002FF299 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = C976F45220BC631B002FF299 /* GameScene.sks */; };
@@ -18,11 +17,11 @@
 		C976F45C20BC631B002FF299 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C976F45A20BC631B002FF299 /* Main.storyboard */; };
 		C976F45E20BC631F002FF299 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C976F45D20BC631F002FF299 /* Assets.xcassets */; };
 		C976F46120BC631F002FF299 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C976F45F20BC631F002FF299 /* LaunchScreen.storyboard */; };
+		C9C33C4920DA1D96001A1D3C /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C33C4820DA1D96001A1D3C /* Wall.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C93DC9B520BE1A8E004CA1D6 /* Paddle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paddle.swift; sourceTree = "<group>"; };
-		C93DC9B720BE1F31004CA1D6 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		C93DC9B920BE2081004CA1D6 /* PongBall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PongBall.swift; sourceTree = "<group>"; };
 		C976F44D20BC631B002FF299 /* Pong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C976F45020BC631B002FF299 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -34,6 +33,7 @@
 		C976F45D20BC631F002FF299 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C976F46020BC631F002FF299 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C976F46220BC631F002FF299 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9C33C4820DA1D96001A1D3C /* Wall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,9 +71,9 @@
 				C976F45420BC631B002FF299 /* Actions.sks */,
 				C976F45620BC631B002FF299 /* GameScene.swift */,
 				C976F45820BC631B002FF299 /* GameViewController.swift */,
-				C93DC9B720BE1F31004CA1D6 /* Point.swift */,
 				C93DC9B520BE1A8E004CA1D6 /* Paddle.swift */,
 				C93DC9B920BE2081004CA1D6 /* PongBall.swift */,
+				C9C33C4820DA1D96001A1D3C /* Wall.swift */,
 				C976F45A20BC631B002FF299 /* Main.storyboard */,
 				C976F45D20BC631F002FF299 /* Assets.xcassets */,
 				C976F45F20BC631F002FF299 /* LaunchScreen.storyboard */,
@@ -156,8 +156,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C93DC9BA20BE2081004CA1D6 /* PongBall.swift in Sources */,
+				C9C33C4920DA1D96001A1D3C /* Wall.swift in Sources */,
 				C976F45720BC631B002FF299 /* GameScene.swift in Sources */,
-				C93DC9B820BE1F31004CA1D6 /* Point.swift in Sources */,
 				C93DC9B620BE1A8E004CA1D6 /* Paddle.swift in Sources */,
 				C976F45920BC631B002FF299 /* GameViewController.swift in Sources */,
 				C976F45120BC631B002FF299 /* AppDelegate.swift in Sources */,
