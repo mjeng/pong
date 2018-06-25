@@ -15,17 +15,18 @@ class GameScene: SKScene {
     var fingerPosition: CGPoint = CGPoint(x: 0.0, y: -GameUtils.paddleHeight/2)
     var playerPaddle: SKShapeNode!
     var aiPaddle: SKShapeNode!
+    var ai: Ai!
     let scaledSpeed = CGFloat(0.1)
+    var pongs: Set<SKShapeNode> = Set<SKShapeNode>()
 
     
     override func didMove(to view: SKView) {
+        
         physicsWorld.speed = scaledSpeed
-
         
         let screenSize = (self.view?.frame.size)!
-        
+    
         let walls = GameUtils.makeWalls(screenSize)
-        
         for wall in walls {
             self.addChild(wall)
         }
@@ -34,14 +35,14 @@ class GameScene: SKScene {
         self.addChild(playerPaddle)
         
         self.aiPaddle = GameUtils.makePaddle(screenSize, .ai)
+        self.ai = Ai(with: aiPaddle, level: .beginner)
         self.addChild(aiPaddle)
         
-
     }
-    
     
     func produceBall() {
         let newBall =  GameUtils.makePongBall()
+        pongs.insert(newBall)
         self.addChild(newBall)
         var velocity = GameUtils.getRandomImpulse()
         velocity.dx /= scaledSpeed
@@ -71,9 +72,11 @@ class GameScene: SKScene {
         for child in self.children {
             if !intersects(child) {
                 child.removeFromParent()
+                pongs.remove(child as! SKShapeNode)
             }
         }
         playerPaddle.position.y = fingerPosition.y
+        aiPaddle.position.y = ai.calculateNextPos(currBallSet: pongs)
     }
 }
 
