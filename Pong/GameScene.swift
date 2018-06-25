@@ -9,120 +9,74 @@
 import SpriteKit
 import GameplayKit
 
-struct PhysicsCategory {
-    static let none = 0b0
-    static let all = ~0b0
-    static let pongBall = 0b1 << 0
-    static let paddle = 0b1 << 1
-    static let wall = 0b1 << 2
-    static let sun = 0b1 << 3
-}
-
-struct ExampleCategory {
-    
-}
 
 class GameScene: SKScene {
     
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+    var fingerPosition: CGPoint = CGPoint(x: 0.0, y: -GameUtils.paddleHeight/2)
+    var playerPaddle: SKShapeNode!
+    var aiPaddle: SKShapeNode!
+    let scaledSpeed = CGFloat(0.1)
+
     
     override func didMove(to view: SKView) {
-        self.backgroundColor = .lightGray
-//        physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8)
-        physicsWorld.contactDelegate = self
-        
-//        let ballRadius: CGFloat = 20
-//        let redBall = SKShapeNode(circleOfRadius: ballRadius)
-//        redBall.fillColor = .red
-//        redBall.position = CGPoint(x: 100, y: 200)
-//        redBall.physicsBody = SKPhysicsBody(circleOfRadius: ballRadius)
-//
-//        self.addChild(redBall)
-//
-//        let blueBall = SKShapeNode(circleOfRadius: ballRadius)
-//        blueBall.fillColor = .blue
-//        blueBall.position = CGPoint(x: -100, y: 200)
-//        blueBall.physicsBody = SKPhysicsBody(circleOfRadius: ballRadius)
-//        blueBall.physicsBody?.restitution = 0.9
-//        blueBall.physicsBody?.linearDamping = 0.1
-//
-//
-//        self.addChild(blueBall)
-//
-//        var points = [CGPoint(x: -200, y: -100),
-//                      CGPoint(x: 200, y: -100)]
-//        let newGround = SKShapeNode(points: &points, count: points.count)
-//        newGround.physicsBody = SKPhysicsBody(edgeChainFrom: newGround.path!)
-//        newGround.physicsBody?.restitution = 1.0
-//
-//        self.addChild(newGround)
-//
-//        let greenBall = SKShapeNode(circleOfRadius: ballRadius)
-//        greenBall.fillColor = .green
-//        greenBall.position = CGPoint(x: 200, y: 150)
-//        greenBall.physicsBody = SKPhysicsBody(circleOfRadius: 1)
-//        greenBall.physicsBody?.affectedByGravity = false
-//
-//        self.addChild(greenBall)
+        physicsWorld.speed = scaledSpeed
 
-        self.addChild(PongBall(position: CGPoint(x: -80, y: 50), initialVelocity: CGVector(dx: 1, dy: -3.0)))
-        self.addChild(Wall(rect: <#T##CGRect#>))
+        
+        let screenSize = (self.view?.frame.size)!
+        
+        let walls = GameUtils.makeWalls(screenSize)
+        
+        for wall in walls {
+            self.addChild(wall)
+        }
+        
+        self.playerPaddle = GameUtils.makePaddle(screenSize, .player)
+        self.addChild(playerPaddle)
+        
+        self.aiPaddle = GameUtils.makePaddle(screenSize, .ai)
+        self.addChild(aiPaddle)
+        
+
     }
     
     
-//    func touchDown(atPoint pos : CGPoint) {
-//        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-//            n.position = pos
-//            n.strokeColor = SKColor.green
-//            self.addChild(n)
-//        }
-//    }
-//
-//    func touchMoved(toPoint pos : CGPoint) {
-//        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-//            n.position = pos
-//            n.strokeColor = SKColor.blue
-//            self.addChild(n)
-//        }
-//    }
-//
-//    func touchUp(atPoint pos : CGPoint) {
-//        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-//            n.position = pos
-//            n.strokeColor = SKColor.red
-//            self.addChild(n)
-//        }
-//    }
-//
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        if let label = self.label {
-//            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-//        }
-//
-//        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-//    }
-//
-//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        print(touches)
-//
-//        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
-//    }
-//
-//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-//    }
-//
-//    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-//    }
-//
+    func produceBall() {
+        let newBall =  GameUtils.makePongBall()
+        self.addChild(newBall)
+        var velocity = GameUtils.getRandomImpulse()
+        velocity.dx /= scaledSpeed
+        velocity.dy /= scaledSpeed
+        newBall.physicsBody?.velocity = velocity
+    }
+
     
-//    override func update(_ currentTime: TimeInterval) {
-//        // Called before each frame is rendered
-//    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+    }
+    func touchDown(atPoint pos: CGPoint) {
+        fingerPosition = pos
+        produceBall()
+    }
+
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
+    }
+    func touchMoved(toPoint pos : CGPoint) {
+        fingerPosition = pos
+    }
+
+
+    override func update(_ currentTime: TimeInterval) {
+        // Called before each frame is rendered
+        for child in self.children {
+            if !intersects(child) {
+                child.removeFromParent()
+            }
+        }
+        playerPaddle.position.y = fingerPosition.y
+    }
 }
 
-extension GameScene: SKPhysicsContactDelegate {
-    
-}
+//extension GameScene: SKPhysicsContactDelegate {
+//
+//}
