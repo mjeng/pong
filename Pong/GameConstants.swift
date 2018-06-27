@@ -10,6 +10,8 @@ import SpriteKit
 
 class GameConstants {
     
+    static var screenSize: CGSize!
+    
     static let origin = CGPoint(x: 0.0, y: 0.0)
     
     static let defaultPongRadius = CGFloat(10.0)

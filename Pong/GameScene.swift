@@ -22,27 +22,28 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         
+        GameConstants.screenSize = (self.view?.frame.size)!
+        
         physicsWorld.speed = scaledSpeed
         
-        let screenSize = (self.view?.frame.size)!
     
-        let walls = GameUtils.makeWalls(screenSize)
+        let walls = GameUtils.makeWalls(GameConstants.screenSize)
         for wall in walls {
             self.addChild(wall)
         }
         
-        self.playerPaddle = Paddle(type: .player, screenSize: screenSize)
+        self.playerPaddle = Paddle(type: .player)
         self.addChild(playerPaddle)
         
-        self.aiPaddle = Paddle(type: .ai, screenSize: screenSize)
+        self.aiPaddle = Paddle(type: .ai)
         self.ai = Ai(with: aiPaddle, level: .easy)
         self.addChild(aiPaddle)
         
     }
     
-    func makeDefaultWalls(screenSize: CGSize) {
-        
-    }
+//    func makeDefaultWalls(screenSize: CGSize) -> Set<Wall> {
+//        
+//    }
     
     func produceBall() {
 //        let newBall =  GameUtils.makePongBall()

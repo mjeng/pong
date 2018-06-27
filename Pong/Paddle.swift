@@ -15,11 +15,11 @@ class Paddle: SKShapeNode {
         case ai
     }
     
-    init(type: PlayerType, screenSize: CGSize, paddleWidth: CGFloat = GameConstants.paddleWidth, paddleHeight: CGFloat = GameConstants.paddleHeight) {
+    init(type: PlayerType, paddleWidth: CGFloat = GameConstants.paddleWidth, paddleHeight: CGFloat = GameConstants.paddleHeight) {
         
         super.init()
         
-        let halfWidth = screenSize.width/2
+        let halfWidth = GameConstants.screenSize.width/2
         
         var paddlePos: CGPoint
         switch type {
