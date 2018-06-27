@@ -31,12 +31,16 @@ class GameScene: SKScene {
             self.addChild(wall)
         }
         
-        self.playerPaddle = GameUtils.makePaddle(screenSize, .player)
+        self.playerPaddle = Paddle(type: .player, screenSize: screenSize)
         self.addChild(playerPaddle)
         
-        self.aiPaddle = GameUtils.makePaddle(screenSize, .ai)
+        self.aiPaddle = Paddle(type: .ai, screenSize: screenSize)
         self.ai = Ai(with: aiPaddle, level: .easy)
         self.addChild(aiPaddle)
+        
+    }
+    
+    func makeDefaultWalls(screenSize: CGSize) {
         
     }
     
