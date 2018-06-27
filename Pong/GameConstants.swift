@@ -24,6 +24,8 @@ class GameConstants {
     static let paddleWidth = CGFloat(8.0)
     static let paddleHeight = CGFloat(80.0)
     
-    static let wallHeight = CGFloat(10.0)
+    static let borderWallHeight = CGFloat(10.0)
+    static let defaultWallColor = UIColor.black
+    static let defaultWallStrokeColor = UIColor.black
     
 }

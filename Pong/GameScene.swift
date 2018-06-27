@@ -26,8 +26,7 @@ class GameScene: SKScene {
         
         physicsWorld.speed = scaledSpeed
         
-    
-        let walls = GameUtils.makeWalls(GameConstants.screenSize)
+        let walls = makeDefaultWalls()
         for wall in walls {
             self.addChild(wall)
         }
@@ -41,12 +40,25 @@ class GameScene: SKScene {
         
     }
     
-//    func makeDefaultWalls(screenSize: CGSize) -> Set<Wall> {
-//        
-//    }
+    func makeDefaultWalls() -> Set<Wall> {
+        
+        let screenSize: CGSize = GameConstants.screenSize
+        let halfHeight = screenSize.height / 2
+        let wallHeight = GameConstants.borderWallHeight
+        
+        let topWallPos = CGPoint(x: 0.0, y: halfHeight - wallHeight/2)
+        let topWall = Wall(position: topWallPos, wallWidth: screenSize.width, wallHeight: wallHeight, color: GameConstants.defaultWallColor, strokeColor: GameConstants.defaultWallStrokeColor)
+        
+        let botWallPos = CGPoint(x: 0.0, y: -(halfHeight - wallHeight/2))
+        let botWall = Wall(position: botWallPos, wallWidth: screenSize.width, wallHeight: wallHeight, color: GameConstants.defaultWallColor, strokeColor: GameConstants.defaultWallStrokeColor)
+        
+        let wallSet: Set = [topWall, botWall]
+        
+        return wallSet
+        
+    }
     
     func produceBall() {
-//        let newBall =  GameUtils.makePongBall()
         let newBall = Pong()
         pongs.insert(newBall)
         self.addChild(newBall)
