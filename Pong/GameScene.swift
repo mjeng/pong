@@ -16,7 +16,7 @@ class GameScene: SKScene {
     var playerPaddle: SKShapeNode!
     var aiPaddle: SKShapeNode!
     var ai: Ai!
-    let scaledSpeed = CGFloat(0.1)
+    let scaledSpeed = CGFloat(1)
     var pongs: Set<SKShapeNode> = Set<SKShapeNode>()
 
     
@@ -35,19 +35,20 @@ class GameScene: SKScene {
         self.addChild(playerPaddle)
         
         self.aiPaddle = GameUtils.makePaddle(screenSize, .ai)
-        self.ai = Ai(with: aiPaddle, level: .beginner)
+        self.ai = Ai(with: aiPaddle, level: .easy)
         self.addChild(aiPaddle)
         
     }
     
     func produceBall() {
-        let newBall =  GameUtils.makePongBall()
+//        let newBall =  GameUtils.makePongBall()
+        let newBall = Pong()
         pongs.insert(newBall)
         self.addChild(newBall)
-        var velocity = GameUtils.getRandomImpulse()
-        velocity.dx /= scaledSpeed
-        velocity.dy /= scaledSpeed
-        newBall.physicsBody?.velocity = velocity
+//        var velocity = GameUtils.getRandomVelocity()
+//        velocity.dx /= scaledSpeed
+//        velocity.dy /= scaledSpeed
+//        newBall.physicsBody?.velocity = velocity
     }
 
     
@@ -56,7 +57,6 @@ class GameScene: SKScene {
     }
     func touchDown(atPoint pos: CGPoint) {
         fingerPosition = pos
-        produceBall()
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -75,11 +75,12 @@ class GameScene: SKScene {
                 pongs.remove(child as! SKShapeNode)
             }
         }
-        playerPaddle.position.y = fingerPosition.y
+        if pongs.count < 1 {
+            produceBall()
+        }
+        playerPaddle.position.y = fingerPosition.y - playerPaddle.frame.height/2
         aiPaddle.position.y = ai.calculateNextPos(currBallSet: pongs)
     }
 }
 
-//extension GameScene: SKPhysicsContactDelegate {
-//
-//}
+

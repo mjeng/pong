@@ -11,7 +11,9 @@ import SpriteKit
 class Ai {
     
     enum AiLevel {
-        case beginner
+        case easy
+        case medium
+        case hard
         case impossible
     }
     enum PaddleDirection {
@@ -30,40 +32,51 @@ class Ai {
     
     
     func calculateNextPos(currBallSet: Set<SKShapeNode>) -> CGFloat {
-        let direction = beginner(currBallSet: currBallSet)
+        let direction = findAiDirection(currBallSet: currBallSet)
         return determineMove(direction: direction) + aiPaddle.position.y
     }
     
     private func determineMove(direction: PaddleDirection) -> CGFloat {
-        let beginnerDy: CGFloat = 1
+        var dy: CGFloat
+        switch level {
+        case .easy: dy = 1.0
+        case .medium: dy = 2.0
+        case .hard: dy = 3.0
+        case .impossible: dy = 4.0
+        }
+        
         switch direction {
-        case .up: return beginnerDy
-        case .down: return -beginnerDy
+        case .up: return dy
+        case .down: return -dy
         case .none: return 0
         }
     }
     
-    private func beginner(currBallSet: Set<SKShapeNode>) -> PaddleDirection {
+    private func findAiDirection(currBallSet: Set<SKShapeNode>) -> PaddleDirection {
         if currBallSet.isEmpty {
             return .none
         }
+        
+        let aiTrueOrigin = CGPoint(x: aiPaddle.position.x, y: aiPaddle.position.y + aiPaddle.frame.height/2)
+        
         var closestBall: SKShapeNode = SKShapeNode()
         var closestDistance: CGFloat = CGFloat.infinity
         var currDistance: CGFloat
         for ball in currBallSet {
-            currDistance = calculateDistance(p1: aiPaddle.position, p2: ball.position)
+            currDistance = calculateDistance(p1: aiTrueOrigin, p2: ball.position)
             if currDistance < closestDistance {
                 closestDistance = currDistance
                 closestBall = ball
             }
         }
         
-        let diff: CGFloat = closestBall.position.y - aiPaddle.position.y
+        let diff: CGFloat = closestBall.position.y - aiTrueOrigin.y
         switch diff {
         case CGFloat(0).nextUp..<CGFloat.infinity: return .up
         case -CGFloat.infinity..<0: return .down
         default: return .none
         }
+        
     }
 
     private func calculateDistance(p1: CGPoint, p2: CGPoint) -> CGFloat {

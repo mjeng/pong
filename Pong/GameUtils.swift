@@ -12,15 +12,15 @@ class GameUtils {
     
     static private let pongRadius = CGFloat(10.0)
     
-    static private let pongXMin = CGFloat(300.0)
-    static private let pongXMax = CGFloat(450.0)
-    static private let pongYMax = CGFloat(800.0)
+    static private let pongXMin = CGFloat(200.0)
+    static private let pongXMax = CGFloat(350.0)
+    static private let pongYMax = CGFloat(600.0)
     
-    static private let paddleWidth = CGFloat(10.0)
-    static let paddleHeight = CGFloat(150.0)
+    static private let paddleWidth = CGFloat(8.0)
+    static let paddleHeight = CGFloat(80.0)
     static private let paddleSize = CGSize(width: paddleWidth, height: paddleHeight)
     
-    static private let wallHeight = CGFloat(15.0)
+    static private let wallHeight = CGFloat(10.0)
     
     static func makeWalls(_ screenSize: CGSize) -> Set<SKShapeNode> {
         let halfWidth = screenSize.width / 2
@@ -47,12 +47,10 @@ class GameUtils {
             origin = CGPoint(x: (wall.position.x + halfWidth*2), y: wall.position.y + halfHeight + wallHeight/2)
             origin = CGPoint(x: halfWidth, y: wallHeight/2)
             wall.physicsBody = SKPhysicsBody(rectangleOf: wallSize, center: origin)
-            print(origin)
-            print(screenSize.height)
             wall.physicsBody?.isDynamic = false
             wall.physicsBody?.restitution = 1.0
             wall.physicsBody?.friction = 0.0
-//            wall.physicsBody?.collisionBitMask = 0b1
+
         }
         
         return wallSet
@@ -94,18 +92,16 @@ class GameUtils {
         pongBall.physicsBody?.mass = CGFloat(1.0)
         pongBall.physicsBody?.affectedByGravity = false
         pongBall.physicsBody?.linearDamping = 0.0
-//        pongBall.physicsBody?.collisionBitMask = 0b1
+
         return pongBall
     }
     
-    static func getRandomImpulse() -> CGVector {
+    static func getRandomVelocity() -> CGVector {
         var xVelocity: CGFloat = CGFloat(arc4random_uniform(UInt32(pongXMax-pongXMin)) + UInt32(pongXMin))
         var yVelocity: CGFloat = CGFloat(arc4random_uniform(UInt32(pongYMax)))
         
         let xFlip = arc4random_uniform(2)
         let yFlip = arc4random_uniform(2)
-        print(xFlip)
-        print(yFlip)
         
         if xFlip == 1 {
             xVelocity *= -1
@@ -114,9 +110,9 @@ class GameUtils {
             yVelocity *= -1
         }
         
-        let impulse = CGVector(dx: xVelocity, dy: yVelocity)
-        print(impulse)
-        return impulse
+        let velocity = CGVector(dx: xVelocity, dy: yVelocity)
+        
+        return velocity
     }
     
 }

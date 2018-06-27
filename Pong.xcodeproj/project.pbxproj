@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C9422FEE20E3436600215DBD /* Pong.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9422FED20E3436600215DBD /* Pong.swift */; };
+		C9422FF020E3446F00215DBD /* GameConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9422FEF20E3446F00215DBD /* GameConstants.swift */; };
 		C976F45120BC631B002FF299 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976F45020BC631B002FF299 /* AppDelegate.swift */; };
 		C976F45320BC631B002FF299 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = C976F45220BC631B002FF299 /* GameScene.sks */; };
 		C976F45520BC631B002FF299 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = C976F45420BC631B002FF299 /* Actions.sks */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C9422FED20E3436600215DBD /* Pong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pong.swift; sourceTree = "<group>"; };
+		C9422FEF20E3446F00215DBD /* GameConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameConstants.swift; sourceTree = "<group>"; };
 		C976F44D20BC631B002FF299 /* Pong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C976F45020BC631B002FF299 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C976F45220BC631B002FF299 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -71,6 +75,8 @@
 				C976F45620BC631B002FF299 /* GameScene.swift */,
 				C978C12320E0B7A2000434ED /* Ai.swift */,
 				C978C12120E058DC000434ED /* GameUtils.swift */,
+				C9422FED20E3436600215DBD /* Pong.swift */,
+				C9422FEF20E3446F00215DBD /* GameConstants.swift */,
 				C976F45A20BC631B002FF299 /* Main.storyboard */,
 				C976F45D20BC631F002FF299 /* Assets.xcassets */,
 				C976F45F20BC631F002FF299 /* LaunchScreen.storyboard */,
@@ -155,6 +161,8 @@
 				C978C12220E058DC000434ED /* GameUtils.swift in Sources */,
 				C976F45720BC631B002FF299 /* GameScene.swift in Sources */,
 				C976F45920BC631B002FF299 /* GameViewController.swift in Sources */,
+				C9422FEE20E3436600215DBD /* Pong.swift in Sources */,
+				C9422FF020E3446F00215DBD /* GameConstants.swift in Sources */,
 				C978C12420E0B7A2000434ED /* Ai.swift in Sources */,
 				C976F45120BC631B002FF299 /* AppDelegate.swift in Sources */,
 			);
