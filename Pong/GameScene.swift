@@ -62,10 +62,6 @@ class GameScene: SKScene {
         let newBall = Pong()
         pongs.insert(newBall)
         self.addChild(newBall)
-//        var velocity = GameUtils.getRandomVelocity()
-//        velocity.dx /= scaledSpeed
-//        velocity.dy /= scaledSpeed
-//        newBall.physicsBody?.velocity = velocity
     }
 
     

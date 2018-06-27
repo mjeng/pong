@@ -11,6 +11,7 @@
 		C9422FF020E3446F00215DBD /* GameConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9422FEF20E3446F00215DBD /* GameConstants.swift */; };
 		C9422FF220E3501200215DBD /* Paddle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9422FF120E3501200215DBD /* Paddle.swift */; };
 		C9422FF420E354A600215DBD /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9422FF320E354A600215DBD /* Wall.swift */; };
+		C9422FF620E35E8B00215DBD /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9422FF520E35E8B00215DBD /* Game.swift */; };
 		C976F45120BC631B002FF299 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976F45020BC631B002FF299 /* AppDelegate.swift */; };
 		C976F45320BC631B002FF299 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = C976F45220BC631B002FF299 /* GameScene.sks */; };
 		C976F45520BC631B002FF299 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = C976F45420BC631B002FF299 /* Actions.sks */; };
@@ -28,6 +29,7 @@
 		C9422FEF20E3446F00215DBD /* GameConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameConstants.swift; sourceTree = "<group>"; };
 		C9422FF120E3501200215DBD /* Paddle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paddle.swift; sourceTree = "<group>"; };
 		C9422FF320E354A600215DBD /* Wall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
+		C9422FF520E35E8B00215DBD /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		C976F44D20BC631B002FF299 /* Pong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C976F45020BC631B002FF299 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C976F45220BC631B002FF299 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -53,6 +55,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C9422FF820E35F7B00215DBD /* GameObjects */ = {
+			isa = PBXGroup;
+			children = (
+				C9422FED20E3436600215DBD /* Pong.swift */,
+				C9422FF120E3501200215DBD /* Paddle.swift */,
+				C9422FF320E354A600215DBD /* Wall.swift */,
+			);
+			path = GameObjects;
+			sourceTree = "<group>";
+		};
+		C9422FF920E35FF100215DBD /* GameLogic */ = {
+			isa = PBXGroup;
+			children = (
+				C9422FF520E35E8B00215DBD /* Game.swift */,
+				C9422FEF20E3446F00215DBD /* GameConstants.swift */,
+				C978C12120E058DC000434ED /* GameUtils.swift */,
+				C978C12320E0B7A2000434ED /* Ai.swift */,
+			);
+			path = GameLogic;
+			sourceTree = "<group>";
+		};
 		C976F44420BC631B002FF299 = {
 			isa = PBXGroup;
 			children = (
@@ -77,12 +100,8 @@
 				C976F45420BC631B002FF299 /* Actions.sks */,
 				C976F45820BC631B002FF299 /* GameViewController.swift */,
 				C976F45620BC631B002FF299 /* GameScene.swift */,
-				C978C12320E0B7A2000434ED /* Ai.swift */,
-				C978C12120E058DC000434ED /* GameUtils.swift */,
-				C9422FED20E3436600215DBD /* Pong.swift */,
-				C9422FF120E3501200215DBD /* Paddle.swift */,
-				C9422FF320E354A600215DBD /* Wall.swift */,
-				C9422FEF20E3446F00215DBD /* GameConstants.swift */,
+				C9422FF920E35FF100215DBD /* GameLogic */,
+				C9422FF820E35F7B00215DBD /* GameObjects */,
 				C976F45A20BC631B002FF299 /* Main.storyboard */,
 				C976F45D20BC631F002FF299 /* Assets.xcassets */,
 				C976F45F20BC631F002FF299 /* LaunchScreen.storyboard */,
@@ -165,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C978C12220E058DC000434ED /* GameUtils.swift in Sources */,
+				C9422FF620E35E8B00215DBD /* Game.swift in Sources */,
 				C9422FF420E354A600215DBD /* Wall.swift in Sources */,
 				C9422FF220E3501200215DBD /* Paddle.swift in Sources */,
 				C976F45720BC631B002FF299 /* GameScene.swift in Sources */,

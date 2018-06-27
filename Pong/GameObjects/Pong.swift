@@ -35,9 +35,8 @@ class Pong: SKShapeNode {
         var xVel: CGFloat = CGFloat(arc4random_uniform(UInt32(GameConstants.pongXMax-GameConstants.pongXMin)) + UInt32(GameConstants.pongXMin))
         var yVel: CGFloat = CGFloat(arc4random_uniform(UInt32(GameConstants.pongYMax-GameConstants.pongYMin)) + UInt32(GameConstants.pongYMin))
 
-        let xFlip = Float(arc4random()) / Float(UINT32_MAX); print(xFlip)
-        let yFlip = Float(arc4random()) / Float(UINT32_MAX); print(yFlip)
-        
+        let xFlip = Float(arc4random()) / Float(UINT32_MAX)
+        let yFlip = Float(arc4random()) / Float(UINT32_MAX)
 
         if xFlip > 0.5 {
             xVel *= -1
