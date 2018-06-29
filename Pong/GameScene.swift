@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 
-class GameScene: SKScene {
+class GameScene: SKScene, GameDelegate {
     
     var fingerPosition: CGPoint = CGPoint(x: 0.0, y: -GameUtils.paddleHeight/2)
     var playerPaddle: SKShapeNode!
@@ -35,7 +35,7 @@ class GameScene: SKScene {
         self.addChild(playerPaddle)
         
         self.aiPaddle = Paddle(type: .ai)
-        self.ai = Ai(with: aiPaddle, level: .easy)
+        self.ai = Ai(with: aiPaddle, level: .hard)
         self.addChild(aiPaddle)
         
     }
@@ -88,7 +88,7 @@ class GameScene: SKScene {
                 pongs.remove(child as! SKShapeNode)
             }
         }
-        if pongs.count < 1 {
+        if pongs.count < 10 {
             produceBall()
         }
         playerPaddle.position.y = fingerPosition.y - playerPaddle.frame.height/2
@@ -96,4 +96,15 @@ class GameScene: SKScene {
     }
 }
 
-
+extension GameScene {
+    
+    func addGameObject(_ gameObject: SKNode) {
+        self.addChild(gameObject)
+    }
+    
+    func removeGameObject(_ gameObject: SKNode) {
+        gameObject.removeFromParent()
+    }
+    
+    
+}

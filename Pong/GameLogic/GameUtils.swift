@@ -22,6 +22,25 @@ class GameUtils {
     
     static private let wallHeight = CGFloat(10.0)
     
+    
+    static func makeDefaultWalls() -> Set<Wall> {
+        
+        let screenSize: CGSize = GameConstants.screenSize
+        let halfHeight = screenSize.height / 2
+        let wallHeight = GameConstants.borderWallHeight
+        
+        let topWallPos = CGPoint(x: 0.0, y: halfHeight - wallHeight/2)
+        let topWall = Wall(position: topWallPos, wallWidth: screenSize.width, wallHeight: wallHeight, color: GameConstants.defaultWallColor, strokeColor: GameConstants.defaultWallStrokeColor)
+        
+        let botWallPos = CGPoint(x: 0.0, y: -(halfHeight - wallHeight/2))
+        let botWall = Wall(position: botWallPos, wallWidth: screenSize.width, wallHeight: wallHeight, color: GameConstants.defaultWallColor, strokeColor: GameConstants.defaultWallStrokeColor)
+        
+        let wallSet: Set = [topWall, botWall]
+        
+        return wallSet
+        
+    }
+    
     static func makeWalls(_ screenSize: CGSize) -> Set<SKShapeNode> {
         let halfWidth = screenSize.width / 2
         let halfHeight = screenSize.height / 2
