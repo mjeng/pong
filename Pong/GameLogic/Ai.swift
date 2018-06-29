@@ -31,9 +31,9 @@ class Ai {
     }
     
     
-    func calculateNextPos(currBallSet: Set<SKShapeNode>) -> CGFloat {
+    func calculateNextPos(currBallSet: Set<SKShapeNode>) -> CGPoint {
         let direction = findAiDirection(currBallSet: currBallSet)
-        return determineMove(direction: direction) + aiPaddle.position.y
+        return CGPoint(x: aiPaddle.position.x, y: determineMove(direction: direction) + aiPaddle.position.y)
     }
     
     private func determineMove(direction: PaddleDirection) -> CGFloat {

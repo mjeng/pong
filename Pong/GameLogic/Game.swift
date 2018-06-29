@@ -9,8 +9,9 @@
 import SpriteKit
 
 protocol GameDelegate: class {
-    func addGameObject(_ gameObject: SKNode)
-    func removeGameObject(_ gameObject: SKNode)
+    func addGameObject(_ gameObject: SKNode) -> ()
+    func checkIfExistsInGame(_ gameObject: SKNode) -> Bool
+    func removeGameObject(_ gameObject: SKNode) -> ()
 }
 
 class Game {
@@ -50,17 +51,41 @@ class Game {
         gameDelegate.addGameObject(aiPaddle)
     }
     
+    func update() {
+        for pong in pongs {
+            if !gameDelegate.checkIfExistsInGame(pong) {
+                pongs.remove(pong)
+                gameDelegate.removeGameObject(pong)
+            }
+        }
+        checkBallCount()
+    }
+    
     func produceBall() {
         let newBall = Pong()
         pongs.insert(newBall)
         gameDelegate.addGameObject(newBall)
     }
     
-    func determinePaddlePos(basedOn fingerPosition: CGPoint) -> CGPoint {
+    
+    func checkBallCount() {
         switch gameMode {
-        case .normal: return CGPoint(x: -GameConstants.screenSize.width/2, y: fingerPosition.y)
-        case .special: return fingerPosition
+        case .normal: pongs.count<GameConstants.normalPongCount ? produceBall() : nil
+        case .special: pongs.count<GameConstants.specialPongCount ? produceBall() : nil
         }
+    }
+    
+    func setPaddlePos(basedOn fingerPosition: CGPoint, type: Paddle.PlayerType) {
+        switch type {
+        case .player:
+            switch gameMode {
+            case .normal: playerPaddle.position = CGPoint(x: -GameConstants.screenSize.width/2, y: fingerPosition.y - playerPaddle.frame.height/2)
+            case .special: playerPaddle.position = CGPoint(x: fingerPosition.x, y: fingerPosition.y - playerPaddle.frame.height/2)
+            }
+        case .ai:
+            aiPaddle.position = ai.calculateNextPos(currBallSet: pongs)
+        }
+        
     }
     
 }

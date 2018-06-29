@@ -21,6 +21,9 @@ class GameConstants {
     static let pongYMin = CGFloat(000.0)
     static let pongYMax = CGFloat(600.0)
     
+    static let normalPongCount = 5
+    static let specialPongCount = 20
+    
     static let paddleWidth = CGFloat(8.0)
     static let defaultPaddleHeight = CGFloat(80.0)
     
