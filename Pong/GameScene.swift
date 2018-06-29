@@ -88,7 +88,8 @@ class GameScene: SKScene {
                 pongs.remove(child as! SKShapeNode)
             }
         }
-        if pongs.count < 1 {
+        if pongs.count < 20
+        {
             produceBall()
         }
         playerPaddle.position.y = fingerPosition.y - playerPaddle.frame.height/2

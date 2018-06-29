@@ -18,11 +18,30 @@ class GameViewController: UIViewController {
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
             self.view.isMultipleTouchEnabled = false
-            if let scene = SKScene(fileNamed: "GameScene") {
+            if let scene = SKScene(fileNamed: "MenuScene") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 
                 // Present the scene
+                view.presentScene(scene)
+            }
+            
+            view.ignoresSiblingOrder = true
+            
+            view.showsFPS = true
+            view.showsNodeCount = true
+            
+            view.showsPhysics = true
+        }
+    }
+    
+    func loadGameScene() {
+        
+        if let view = self.view as! SKView? {
+
+            self.view.isMultipleTouchEnabled = false
+            if let scene = SKScene(fileNamed: "GameScene") {
+                scene.scaleMode = .aspectFill
                 view.presentScene(scene)
             }
             
