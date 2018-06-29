@@ -15,7 +15,7 @@ class Paddle: SKShapeNode {
         case ai
     }
     
-    init(type: PlayerType, paddleWidth: CGFloat = GameConstants.paddleWidth, paddleHeight: CGFloat = GameConstants.paddleHeight) {
+    init(type: PlayerType, paddleWidth: CGFloat = GameConstants.paddleWidth, paddleHeight: CGFloat = GameConstants.defaultPaddleHeight) {
         
         super.init()
         
